@@ -1,7 +1,7 @@
-#A3 - UAM - Ténicas de Programação
-###Minha resolução para a A3 de Técnicas de Programação do meu curso de Ciência da Computação da Universidade Anhembi Morumbi. 
+# A3 - UAM - Ténicas de Programação
+### Minha resolução para a A3 de Técnicas de Programação do meu curso de Ciência da Computação da Universidade Anhembi Morumbi. 
 
-####O enunciado da questão era o seguinte:
+#### O enunciado da questão era o seguinte:
 
 Em algumas situações, para a implementação de um sistema computacional, não se conhece, previamente, qual o tamanho da massa de dados que será efetivamente manipulada. Em tais casos, pode ser usado o recurso de alocação dinâmica de memória. Com tal recurso, uma região de memória poderá ser alocada, sob demanda de modo a tornar o programa mais flexível em relação à quantidade de itens a serem manipulados. Essa flexibilidade torna o programa escalável.
 
