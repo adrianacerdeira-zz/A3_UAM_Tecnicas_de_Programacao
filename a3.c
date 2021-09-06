@@ -556,7 +556,8 @@ void sistemaInterativo() {
     } else {
         printf("\nSeu computador não tem memória suficiente para rodar este programa.\n");
     }
-
+    
+    free(clientes.lista);
 
 }
 
