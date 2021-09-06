@@ -30,19 +30,33 @@ typedef struct listaDeClientes {
 
 //Protótipos
 int descobrirQuantidadeDeEntradas();
+
 void imprimirCabecalho();
+
 void imprimirLinhaCliente(CLIENTE cliente);
+
 void imprimirClienteQueMaisCompra(LISTACLIENTES *clientes);
+
 void imprimirClienteEspecifico(LISTACLIENTES *clientes);
+
 int queMesE();
+
 int removerCliente(LISTACLIENTES *clientes);
+
 int atualizarGastosCliente(LISTACLIENTES *clientes);
+
 void zerarGastosMes(LISTACLIENTES *clientes);
+
 void inserirCliente(LISTACLIENTES *clientes);
+
 void atualizarDB(LISTACLIENTES *clientes);
+
 void organizarClientes(LISTACLIENTES *clientes);
+
 void lerDB(LISTACLIENTES *clientes);
+
 void imprimirListaDeClientes(LISTACLIENTES *clientes);
+
 void sistemaInterativo();
 
 
@@ -137,7 +151,7 @@ void imprimirClienteEspecifico(LISTACLIENTES *clientes) {
     imprimirCabecalho();
     for (i = 0; i < clientes->contador; i++) {
         if (strcmp(cliente.nome, clientes->lista[i].nome) == 0 &&
-        strcmp(cliente.sobrenome, clientes->lista[i].sobrenome) == 0) {
+            strcmp(cliente.sobrenome, clientes->lista[i].sobrenome) == 0) {
             imprimirLinhaCliente(clientes->lista[i]);
             controle = 1;
 
@@ -178,7 +192,7 @@ int removerCliente(LISTACLIENTES *clientes) {
 
     for (i = 0; i < clientes->contador; i++) {
         if (strcmp(cliente.nome, clientes->lista[i].nome) == 0 &&
-        strcmp(cliente.sobrenome, clientes->lista[i].sobrenome) == 0) {
+            strcmp(cliente.sobrenome, clientes->lista[i].sobrenome) == 0) {
             controle = 1;
             indiceCliente = i;
             printf("\nTem certeza que quer remover o cliente %s %s? Digite 1 para Sim e 0 para Não ",
@@ -243,7 +257,7 @@ int atualizarGastosCliente(LISTACLIENTES *clientes) {
 
     for (i = 0; i < clientes->contador; i++) {
         if (strcmp(cliente.nome, clientes->lista[i].nome) == 0 &&
-        strcmp(cliente.sobrenome, clientes->lista[i].sobrenome) == 0) {
+            strcmp(cliente.sobrenome, clientes->lista[i].sobrenome) == 0) {
             controle = 1;
             printf("\nDe quanto é o gasto novo do cliente %s %s? ", clientes->lista[i].nome,
                    clientes->lista[i].sobrenome);
@@ -305,7 +319,7 @@ void inserirCliente(LISTACLIENTES *clientes) {
 
     for (i = 0; i < clientes->contador; i++) {
         if (strcmp(cliente.nome, clientes->lista[i].nome) == 0 &&
-        strcmp(cliente.sobrenome, clientes->lista[i].sobrenome) == 0) {
+            strcmp(cliente.sobrenome, clientes->lista[i].sobrenome) == 0) {
             controle = 1;
             printf("\nEste cliente já existe, se deseja atualizar seus gastos favor usar a opção 3 - Atualizar gastos de cliente? ");
 
@@ -436,6 +450,7 @@ void imprimirListaDeClientes(LISTACLIENTES *clientes) {
         imprimirLinhaCliente(clientes->lista[i]);
     }
 }
+
 /**
  * O coração do sistema. Faz as inicializações iniciais necessárias além de perguntar para o usuário o que quer fazer e decidir qual ação tomar dependendo da opção
  */
@@ -481,57 +496,57 @@ void sistemaInterativo() {
                         clientes.lista = (CLIENTE *) realloc(clientes.lista, novoBytes);
                     }
                     break;
-                    case 2:
-                        if (removerCliente(&clientes) == 1) {
-                            atualizarDB(&clientes);
-                        }
+                case 2:
+                    if (removerCliente(&clientes) == 1) {
+                        atualizarDB(&clientes);
+                    }
 
-                        if ((clientes.contador % 10) == 0) {
-                            entradas = descobrirQuantidadeDeEntradas();
-                            novoBytes = bytes * entradas;
-                            clientes.lista = (CLIENTE *) realloc(clientes.lista, novoBytes);
-                        }
-                        break;
-                        case 3:
-                            if (atualizarGastosCliente(&clientes) == 1) {
-                                organizarClientes(&clientes);
-                                atualizarDB(&clientes);
-                            }
-                            break;
-                            case 4:
-                                //Sempre que o programa roda, ele verifica se o mês virou para zerar os gastos mensais. Aqui, forneço além disso a possibilidade de zerar na mão mesmo que o mês não virou
+                    if ((clientes.contador % 10) == 0) {
+                        entradas = descobrirQuantidadeDeEntradas();
+                        novoBytes = bytes * entradas;
+                        clientes.lista = (CLIENTE *) realloc(clientes.lista, novoBytes);
+                    }
+                    break;
+                case 3:
+                    if (atualizarGastosCliente(&clientes) == 1) {
+                        organizarClientes(&clientes);
+                        atualizarDB(&clientes);
+                    }
+                    break;
+                case 4:
+                    //Sempre que o programa roda, ele verifica se o mês virou para zerar os gastos mensais. Aqui, forneço além disso a possibilidade de zerar na mão mesmo que o mês não virou
 
-                                printf("\nAo virar o mês o sitema automaticamente atualiza os gastos totais e zera os gastos mensais. Prosseguindo você irá fazer essa atualização novamente, tem certeza que deseja zerar os gastos mensais e atualizar os gastos totais? Digite 1 para Sim e 0 para Não ");
-                                scanf("%d", &certeza);
-                                while (certeza != 0 && certeza != 1) {
-                                    printf("\nOpção inválida. Digite 1 para Sim e 0 para Não ");
-                                    scanf("%d", &certeza);
-                                }
-                                if (certeza == 1) {
-                                    zerarGastosMes(&clientes);
-                                    atualizarDB(&clientes);
-                                    printf("\nProcesso realizado.");
-                                } else {
-                                    printf("\nVocê escolheu não atualizar a base.");
+                    printf("\nAo virar o mês o sitema automaticamente atualiza os gastos totais e zera os gastos mensais. Prosseguindo você irá fazer essa atualização novamente, tem certeza que deseja zerar os gastos mensais e atualizar os gastos totais? Digite 1 para Sim e 0 para Não ");
+                    scanf("%d", &certeza);
+                    while (certeza != 0 && certeza != 1) {
+                        printf("\nOpção inválida. Digite 1 para Sim e 0 para Não ");
+                        scanf("%d", &certeza);
+                    }
+                    if (certeza == 1) {
+                        zerarGastosMes(&clientes);
+                        atualizarDB(&clientes);
+                        printf("\nProcesso realizado.");
+                    } else {
+                        printf("\nVocê escolheu não atualizar a base.");
 
-                                }
+                    }
 
-                                break;
-                                case 5:
-                                    imprimirClienteQueMaisCompra(&clientes);
-                                    break;
-                                    case 6:
-                                        imprimirListaDeClientes(&clientes);
-                                        break;
-                                        case 7:
-                                            imprimirClienteEspecifico(&clientes);
-                                            break;
-                                            case 8:
-                                                printf("\nFoi um prazer tê-lo conosco.\n");
-                                                break;
-                                                default:
-                                                    printf("\nOpção inválida, favor digitar uma das opções fornecidas\n");
-                                                    break;
+                    break;
+                case 5:
+                    imprimirClienteQueMaisCompra(&clientes);
+                    break;
+                case 6:
+                    imprimirListaDeClientes(&clientes);
+                    break;
+                case 7:
+                    imprimirClienteEspecifico(&clientes);
+                    break;
+                case 8:
+                    printf("\nFoi um prazer tê-lo conosco.\n");
+                    break;
+                default:
+                    printf("\nOpção inválida, favor digitar uma das opções fornecidas\n");
+                    break;
             }
 
 
